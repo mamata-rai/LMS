@@ -1,5 +1,3 @@
-# from library_app.models import Category
-
 from django.shortcuts import redirect,render,get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -13,19 +11,6 @@ from django.utils import timezone
 
 from .models import Book, BorrowRecord, Category,Fine,IssueBook,Student
 
-# def home(request):
-
-# class HomeView(TemplateView):
-#     template_name = 'home.html'
-
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         books = Book.objects.all()
-
-#         context['books'] = books
-#         context['total_books'] = books.count()
-#         context['available_books'] = books.filter(is_available=True).count()
-#         return context
 from .models import Book, Category
 from django.views.generic import TemplateView
 
@@ -54,43 +39,9 @@ class HomeView(TemplateView):
 
 
         return context
-
-# class Post(TimeStampModel):
-#     STATUS_CHOICE = [
-#         ("active","Active"),
-#         ("in_active","Inactive"),
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-
-    #     context["featured_post"] = Post.objects.filter(
-    #         published_at__isnull = False, status ="active"
-    #     ).order_by("-view_count", "-published_at").first()
-
-    #     context["featured_posts"] = Post.objects.filter(
-    #         published_at__isnull = False, status ="active"
-    #     ).order_by("-view_count", "-published_at")[1:4]
-        
-    #     context["featured_post_right"] = Post.objects.filter(
-    #         published_at__isnull = False, status ="active"
-    #     ).order_by("-view_count", "-published_at")[4:10]
-
-    #     one_week_ago = timezone.now() - timedelta(days=7)
-    #     context["weekly_top_posts"] = Post.objects.filter(
-    #         published_at__isnull = False, status ="active", published_at__gte=one_week_ago
-    #     ).order_by("-view_count", "-published_at")[:7]
-        
-    #     context["recent_posts"] = Post.objects.filter(
-    #         published_at__isnull = False, status ="active",
-    #     ).order_by("-published_at")[:5]
-
-        
-        # return context
-    
-        # return context
-    
+   
 class BorrowBookView(LoginRequiredMixin, View):
     def get(self, request, book_id):
-    # GET request आएमा Home मा फर्काउने
         return redirect("home")
 
     def post(self, request, book_id):
@@ -206,18 +157,6 @@ class CategoryBooksView(ListView):
     def get_queryset(self):
         return Book.objects.filter(category_id=self.kwargs["id"])
     
-
-
-# class MembershipView(TemplateView):
-#     template_name = "footer/membership.html"
-#     login_url = "login"
-
-#     def dispatch(self, request, *args, **kwargs):
-#         if not request.user.is_authenticated:
-#             messages.warning(request, "Please login to get membership.")
-#             return redirect("login")
-#         return super().dispatch(request, *args, **kwargs)  
-
 class MembershipView(TemplateView):
     template_name = "footer/membership.html"
     login_url = "login"
@@ -259,6 +198,3 @@ class ContactView(LoginRequiredMixin, TemplateView):
             return redirect("contact")
         messages.success(request,"Message sent successfully")
         return redirect("/")
-
-# class LoginView(TemplateView):
-#     template_name="registration/login.html"

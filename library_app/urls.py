@@ -1,30 +1,3 @@
-
-# from django.contrib import admin
-# from django.urls import path
-# from .views import *
-# from library_app import views
-
-# urlpatterns = [
-#     # path('',views.home,name='home'),
-#     path('', HomeView.as_view(), name='home'),
-#     path('borrow/<int:book_id>/',views.borrow_book,name='borrow_book'),
-#     path('return/<int:record_id>/',views.return_book,name='return_book'),
-#     path('my_books/',views.my_books,name='my_books'),
-#     # path('add-book/', views.add_book, name='add_book'),
-#     path('add-book/', AddBookView.as_view(), name='add_book'),
-
-#     path('delete-book/<int:book_id>/', views.delete_book, name='delete_book'), 
-#     path('signup/', views.signup_view, name='signup'),
-#     path('login/', views.login_view, name='login'),
-
-
-#     path('logout/', views.logout_view, name='logout'),
-#     path("create-admin/", views.create_admin),
-#     path('', views.home, name='home')
-# ]
-
-
-
 from django.urls import path
 from .views import (HomeView, AddBookView, BorrowBookView, ReturnBookView,MyBooksView,ContactView, DeleteBookView, MembershipView,AboutView,SignupView,PostByCategory,CategoryBooksView)
 
