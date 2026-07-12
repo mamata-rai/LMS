@@ -1,0 +1,12 @@
+venv/
+myenv/
+
+.env
+db.sqlite3
+
+media/
+book_images/
+book_pdfs/
+
+__pycache__/
+*.py[cod]
