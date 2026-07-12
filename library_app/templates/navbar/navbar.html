@@ -1,0 +1,66 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">
+            <i class="fas fa-book-open"></i>
+            OUR LIBRARY
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'home' %}">Home</a>
+                </li>
+                {% if user.is_staff %}
+                <li class="nav-item">
+                    <!-- <a href="{% url 'add_book' %}">Add Book</a>  -->
+                    <a class="nav-link" href="{% url 'add_book' %}">Add Books</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="{% url 'category_list' %}"> Categories1</a>
+
+                    {% for category in categories %}
+                    <a href="{% url 'post_by_category' category.id %}">{{ category.name }}</a>
+
+                    {% endfor %}
+                </li> -->
+                {% endif %}
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'my_books' %}">My Borrowings</a>
+                </li>
+                {% endif %}
+                {% if user.is_authenticated %}
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-user"></i> {{ user.username }}
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <form method="post" action="{% url 'logout' %}" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm px-3 rounded-pill ms-2">
+                            <i class="fas fa-power-off"></i> Logout
+                        </button>
+                    </form>
+                </li>
+
+                {% else %}
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'signup' %}">Register</a>
+                </li>
+
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

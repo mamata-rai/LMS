@@ -1,0 +1,55 @@
+<!-- <h2>{{ category.name }}</h2>
+
+{% for book in books %}
+
+<div class="card">
+    <h4>{{ book.title }}</h4>
+    <p>{{ book.author }}</p>
+
+    {% if book.pdf_file %}
+        <a href="{{ book.pdf_file.url }}">Read PDF</a>
+    {% endif %}
+</div>
+
+{% empty %}
+
+<div style="text-align:center; margin-top:40px;">
+    <h3>No books available in this category.</h3>
+    <p>The teacher hasn't uploaded any books yet.</p>
+</div>
+
+{% endfor %} -->
+
+
+<h2>{{ category.name }}</h2>
+
+{% for book in books %}
+
+<div class="card p-3 mb-3">
+
+    <h4>{{ book.title }}</h4>
+    <p>{{ book.author }}</p>
+
+    <!-- uploaded date -->
+    <small class="text-muted">
+        Uploaded: {{ book.published_at|date:"d M Y" }}
+    </small>
+
+    <br>
+
+    {% if book.pdf_file %}
+        <a href="{{ book.pdf_file.url }}" target="_blank">
+            📖 Read PDF
+        </a>
+    {% endif %}
+
+</div>
+
+{% empty %}
+
+<div style="text-align:center; margin-top:40px;">
+    <h3>No books available in this category.</h3>
+    <p>The teacher hasn't uploaded any books yet.</p>
+</div>
+
+{% endfor %}

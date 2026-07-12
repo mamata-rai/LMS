@@ -1,0 +1,149 @@
+{% extends "home.html" %}
+
+{% block content %}
+
+<style>
+body{
+    background: linear-gradient(135deg,#eef2ff,#dbeafe);
+}
+
+.membership-wrapper{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:50px 15px;
+}
+
+.membership-form{
+    width:100%;
+    max-width:900px;
+    background:#fff;
+    border-radius:20px;
+    padding:50px;
+    box-shadow:0 15px 40px rgba(0,0,0,.12);
+}
+
+.membership-form h2{
+    text-align:center;
+    font-weight:700;
+    color:#2563eb;
+    margin-bottom:10px;
+}
+
+.membership-form p{
+    text-align:center;
+    color:#6c757d;
+    margin-bottom:40px;
+}
+
+.form-label{
+    font-weight:600;
+    margin-bottom:8px;
+}
+
+.form-control{
+    height:55px;
+    border-radius:12px;
+    border:1px solid #ced4da;
+    transition:.3s;
+}
+
+textarea.form-control{
+    height:120px;
+}
+
+.form-control:focus{
+    border-color:#2563eb;
+    box-shadow:0 0 10px rgba(37,99,235,.2);
+}
+
+.btn-membership{
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+    color:white;
+    font-size:18px;
+    font-weight:600;
+    border:none;
+    border-radius:12px;
+    height:55px;
+    transition:.3s;
+}
+
+.btn-membership:hover{
+    color:white;
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(37,99,235,.3);
+}
+
+@media(max-width:768px){
+
+.membership-form{
+    padding:30px 20px;
+}
+
+}
+</style>
+
+<div class="membership-wrapper">
+
+    <div class="membership-form">
+
+        <h2>Library Membership Form</h2>
+        <p>Please fill out the form below to apply for membership.</p>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="row">
+
+                <div class="col-md-6 mb-4">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-control" name="name" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-control" name="email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <label class="form-label">Phone Number</label>
+                    <input type="text" class="form-control" name="phone" placeholder="98XXXXXXXX" required>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <label class="form-label">Roll Number</label>
+                    <input type="text" class="form-control" name="roll_no" placeholder="Enter your roll number">
+                </div>
+
+                <div class="col-12 mb-4">
+                    <label class="form-label">Address</label>
+                    <textarea class="form-control" name="address" placeholder="Enter your address"></textarea>
+                </div>
+
+                <div class="col-12">
+                    <!-- <button type="submit" class="btn btn-membership w-100">
+                        Apply for Membership
+                    </button> -->
+                <form method="POST">
+    {% csrf_token %}
+
+    <!-- your input fields -->
+
+    <button type="submit" class="btn btn-membership w-100">
+        Apply for Membership
+    </button>
+
+</form>
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
